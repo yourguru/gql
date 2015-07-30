@@ -35,7 +35,7 @@ module GQL
       field_class = Registry.fetch(object_proc_result)
 
       field = field_class.new(ast_node, target, variables, context)
-      field.value
+      field.value if field.target
     end
 
     private
