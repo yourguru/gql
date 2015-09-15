@@ -16,7 +16,7 @@ module GQL
         next_class = result_class || caller_class
 
         result = next_class.new(ast_node, target, variables, context)
-        result.value
+        result.value if result.target
       end
 
       def parameters

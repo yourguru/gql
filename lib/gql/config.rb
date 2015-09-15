@@ -40,7 +40,7 @@ module GQL
     end
 
     def default_field_proc
-      @@default_field_proc ||= -> id { -> { target.public_send(id) } }
+      @@default_field_proc ||= -> id { -> { target.try(:public_send, id) } }
     end
 
     def default_field_proc=(value)
@@ -48,7 +48,7 @@ module GQL
     end
 
     def default_call_proc
-      @@default_call_proc ||= -> id { -> (*args) { target.public_send(id, *args) } }
+      @@default_call_proc ||= -> id { -> (*args) { target.try(:public_send, id, *args) } }
     end
 
     def default_call_proc=(value)
