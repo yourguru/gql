@@ -32,6 +32,7 @@ module GQL
     end
 
     def value
+      return unless object_proc_result
       field_class = Registry.fetch(object_proc_result)
 
       field = field_class.new(ast_node, target, variables, context)
